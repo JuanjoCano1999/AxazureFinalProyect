@@ -1,0 +1,232 @@
+function onLoadContactASP(executionContext) {
+    var formContext = executionContext.getFormContext();
+    
+    var pais = formContext.getAttribute("address1_country").getValue();
+    var campoPais = formContext.getAttribute();
+
+    var Dni = formContext.getAttribute("axz_dni");
+    var DniValor = formContext.getAttribute("axz_dni").getValue("");
+
+    var Nombre = formContext.getAttribute("firstname");
+    var NombreValor = formContext.getAttribute("firstname").getValue();
+    
+    var Apellido = formContext.getAttribute("lastname");
+    var ApellidoValor = formContext.getAttribute("").getValue();
+
+    var Telefono = formContext.getAttribute("mobilephone");
+    var TelefonoValor = formContext.getAttribute("mobilephone").getValue();
+
+    var Email = formContext.getAttribute("emailaddress1");
+    var EmailValor = formContext.getAttribute("emailaddress1").getValue();
+
+    // var FechaNacimiento = formContext.getAttribute("");
+    // var FechaNacimientoValor = formContext.getAttribute("").getValue(""); 
+    // va a ir con un optionset que deje elegir la fecha, por lo que no tiene que haber 
+
+    var Dirección = formContext.getAttribute("address1_name");
+    var DirecciónValor = formContext.getAttribute("address1_name").getValue();
+
+    var CodigoPostal = formContext.getAttribute("address1_postalcode");
+    var CodigoPostalValor = formContext.getAttribute("address1_postalcode").getValue();
+
+    var Ciudad = formContext.getAttribute("address1_city");
+    var CiudadValor = formContext.getAttribute("address1_city").getValue();
+
+    // var Tipo("coche/furgoneta") = formContext.getAttribute(""); 
+    // var Tipo("coche/furgoneta") = formContext.getAttribute("").getValue("");
+    // Al ser un option set no tendria que ir con validacion ya que solo va a haber dos opciones
+
+    // var Combustible = formContext.getAttribute("");
+    // var CombustibleValor = formContext.getAttribute("").getValue("");
+    // Al ser un option set no tendria que ir con validacion ya que solo va a haber dos opciones
+
+    var Plazas = formContext.getAttribute("axz_numerodeplazas");
+    var PlazasValor = formContext.getAttribute("axz_numerodeplazas").getValue();
+
+    var Puertas = formContext.getAttribute("axz_numerodepuertas")
+    var PuertasValor = formContext.getAttribute("axz_numerodepuertas").getValue();
+
+    // var FechaDeseadaAlquiler = formContext.getAttribute("").getValue();
+    // var FechaDeseadaAlquilerValor = formContext.getAttribute("");
+    // Al ser un option set no tendria que ir con validacion ya que solo va a haber dos opciones
+    
+    var PeticionesEspeciales = formContext.getAttribute("axz_peticionesespeciales")
+    var PeticionesEspecialesValor = formContext.getAttribute("axz_peticionesespeciales").getValue();
+
+
+    // Establecer setTimeOut para que tarden en salir un tiempo determinado
+    // Que me salte cuando pulso el boton guardar en el formulario, es decir, cuando proceda al registro del lead que me de fallo 
+
+    
+    function validarEmail(){
+        if (Dni !== null && typeof Dni === 'string' && Dni.length() > 1) {
+            formContext.ui.setFormNotification("El DNI es correcto.", "INFO", "0");
+            formContext.ui.clearFormNotification("0");
+            return true;
+        } else {
+            formContext.ui.setFormNotification("El nombre es incorrecto.", "ERROR", "1");
+            formContext.ui.clearFormNotification("1");
+            return false;
+        }
+    }
+
+    function validarNombre(){
+        if (Nombre !== null && typeof Nombre === 'string' && Nombre.length() > 1) {
+            formContext.ui.setFormNotification("El nombre es correcto.", "INFO", "2");
+            formContext.ui.clearFormNotification("2");
+            return true;
+        } else {
+            formContext.ui.setFormNotification("El nombre es incorrecto.", "ERROR", "3");
+            formContext.ui.clearFormNotification("3");
+            return false;
+        }
+    }
+    
+    function validarApellido(){
+        if (Apellido !== null && typeof Nombre === 'string' && Nombre.length() > 1) {
+            formContext.ui.setFormNotification("El apellido es correcto.", "INFO", "4");
+            formContext.ui.clearFormNotification("4");
+            return true;
+        } else {
+            formContext.ui.setFormNotification("El apellido es incorrecto.", "ERROR", "5");
+            formContext.ui.clearFormNotification("5");
+            return false;
+        }
+    }
+   
+    function validarTelefono(){
+        if(Telefono !== null && typeof Telefono == 'int' && Telefono.length() == 9){
+            formContext.ui.setFormNotification("El teléfono es correcto.", "INFO", "6");
+            formContext.ui.clearFormNotification("6");
+            return true;
+        } else{
+            formContext.ui.setFormNotification("El teléfono es incorrecto.", "ERROR", "7");
+            formContext.ui.clearFormNotification("7");
+            return false;
+        }
+    }
+
+    function validarEmail(){
+        var emailValido =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+        if(Email !== null && typeof 'string' && emailValido.test(EmailValor)){
+            formContext.ui.setFormNotification("El email es correcto.", "INFO", "8");
+            formContext.ui.clearFormNotification("8");
+            return true;
+        } else{
+            formContext.ui.setFormNotification("El email es correcto.", "ERROR", "9");
+            formContext.ui.clearFormNotification("9");
+            return false;
+        }
+    }
+
+
+    function validarDireccion(){
+        if(Dirección !== null && typeof Dirección == 'string'){
+            formContext.ui.setFormNotification("El teléfono es correcto.", "INFO", "10");
+            formContext.ui.clearFormNotification("10");
+            return true;
+        } else{
+            formContext.ui.setFormNotification("El teléfono es incorrecto.", "ERROR", "11");
+            formContext.ui.clearFormNotification("11");
+            return false;
+        }
+    }
+
+    function validarCodigoPostal(){
+        if(CodigoPostal !== null && typeof Dirección == 'string'){
+            formContext.ui.setFormNotification("El Código postal es correcto.", "INFO", "12");
+            formContext.ui.clearFormNotification("12");
+            return true;
+        } else{
+            formContext.ui.setFormNotification("El Código postal es incorrecto.", "ERROR", "13");
+            formContext.ui.clearFormNotification("13");
+            return false; 
+        }
+    }
+
+      function validarCiudad(){
+          
+        if(CodigoPostal !== null && typeof Dirección == 'string'){
+            formContext.ui.setFormNotification("El Código postal es correcto.", "INFO", "12");
+            formContext.ui.clearFormNotification("12");
+            return true;
+        } else{
+            formContext.ui.setFormNotification("El Código postal es incorrecto.", "ERROR", "13");qw
+            formContext.ui.clearFormNotification("13");
+            return false;
+        }
+      }
+
+
+        function validarCodigoPostal(){        
+            if(CodigoPostal !== null && typeof Dirección == 'string'){
+                formContext.ui.setFormNotification("El Código postal es correcto.", "INFO", "12");
+                formContext.ui.clearFormNotification("12");
+                return true;
+            } else{
+                formContext.ui.setFormNotification("El Código postal es incorrecto.", "ERROR", "13");
+                formContext.ui.clearFormNotification("13");
+                return false;
+            }
+        }
+
+
+        function validarPuertas(){
+            if(Puertas != null && typeof Puertas == 'int' && Puertas >= 2 && Puertas <= 5){
+                formContext.ui.setFormNotification("El número de puertas es correcto.", "INFO", "14");
+                formContext.ui.clearFormNotification("14");
+                return true;
+            }else{
+                formContext.ui.setFormNotification("El número de puertas no es correcto.", "ERROR", "15");
+                formContext.ui.clearFormNotification("15");
+                return false;
+            }
+        }
+
+        
+        function validarPeticionesEspeciales(){
+            if(PeticionesEspeciales != null && typeof PeticionesEspeciales == 'string'){
+                formContext.ui.setFormNotification("Tendremos en cuenta el coche escogido", "INFO", "14")
+                formContext.ui.clearFormNotification("14");
+            } else {
+                formContext.ui.setFormNotification("El Código postal es incorrecto.", "ERROR", "15");
+                formContext.ui.clearFormNotification("15");
+            }
+        }
+
+        // <input type="submit" value="Validate" onclick="return validateEmail()" />
+
+        function llamadaFuncion(){
+            validarEmail();
+            validarNombre();
+            validarApellido();
+            validarTelefono();
+            validarDireccion();
+            validarCodigoPostal();
+            validarPuertas();
+            validarPeticionesEspeciales();
+        }
+
+
+
+
+
+
+
+
+    if (pais !== null && typeof pais === 'string' && pais.length > 0) {
+        formContext.ui.setFormNotification("Por favor, introduzca el país.", "ERROR", "Primero");
+        
+    } else {
+        formContext.ui.clearFormNotification("Primero");
+    }
+
+    if (telefono !== null && typeof telefono === 'string' && telefono.replace(' ', '').length !== 9) {
+        formContext.ui.setFormNotification("Por favor, introduzca un número de teléfono válido.", "ERROR", "Tercero");
+        
+    } else {
+        formContext.ui.clearFormNotification("Tercero");
+    }
+}
+
